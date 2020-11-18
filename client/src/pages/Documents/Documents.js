@@ -13,7 +13,7 @@ import {
   Avatar,
   CardActions,
 } from "@material-ui/core";
-import { AttachFile, FileCopy, GetApp } from "@material-ui/icons";
+import { AttachFile, GetApp } from "@material-ui/icons";
 import useHttpClient from "../../hooks/useHttpClient";
 import Spinner from "../../components/Spinner/Spinner";
 import Modal from "../../components/Modal/Modal";
@@ -64,7 +64,7 @@ const Documents = () => {
     const fetchDocs = async () => {
       try {
         const res = await sendRequest(
-          `http://localhost:8000/docs/${semId}/${subId}`
+          `${process.env.REACT_APP_URL}/docs/${semId}/${subId}`
         );
         setDocs(res.docs);
       } catch (error) {}
@@ -76,7 +76,7 @@ const Documents = () => {
     try {
       clearError();
       const res = await sendRequest(
-        `http://localhost:8000/docs/${docId}?type=${type}`,
+        `${process.env.REACT_APP_URL}/docs/${docId}?type=${type}`,
         "GET",
         null,
         {},
@@ -97,7 +97,7 @@ const Documents = () => {
     formData.append("doc", e.target.files[0]);
     try {
       const res = await sendRequest(
-        `http://localhost:8000/docs/${semId}/${subId}`,
+        `${process.env.REACT_APP_URL}/docs/${semId}/${subId}`,
         "POST",
         formData
       );

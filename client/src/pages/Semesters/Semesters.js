@@ -50,7 +50,9 @@ const Semesters = () => {
     const fetchDirectores = async () => {
       breadcrumbLinks.links = breadcrumbLinks.links.slice(0, 1);
       try {
-        const response = await sendRequest("http://localhost:8000/semesters");
+        const response = await sendRequest(
+          `${process.env.REACT_APP_URL}/semesters`
+        );
         setSemesters(response.semesters);
       } catch (error) {}
     };

@@ -29,8 +29,8 @@ const CreateFolderModal = ({
     e.preventDefault();
 
     let url = semId
-      ? `http://localhost:8000/subjects/${semId}`
-      : "http://localhost:8000/semesters";
+      ? `${process.env.REACT_APP_URL}/subjects/${semId}`
+      : `${process.env.REACT_APP_URL}/semesters`;
 
     try {
       const res = await sendRequest(url, "POST", {

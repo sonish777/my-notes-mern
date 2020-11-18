@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Folders from "../../components/Folders/Folders";
 import useHttpClient from "../../hooks/useHttpClient";
 import {
@@ -50,7 +50,7 @@ const Subjects = () => {
       breadcrumbLinks.links = breadcrumbLinks.links.slice(0, 2);
       try {
         const response = await sendRequest(
-          `http://localhost:8000/subjects/${semId}`
+          `${process.env.REACT_APP_URL}/subjects/${semId}`
         );
         setSubjects(response.subjects);
       } catch (error) {}
