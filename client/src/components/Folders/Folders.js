@@ -3,6 +3,9 @@ import { IconButton, makeStyles, Paper } from "@material-ui/core";
 import { Delete, Folder } from "@material-ui/icons";
 import { useHistory, useLocation } from "react-router-dom";
 import BreadcrumbLinksContext from "../../context/BreadcrumbLinks";
+import { CSSTransition } from "react-transition-group";
+
+import "./Folders.css";
 
 const useStyles = makeStyles((theme) => ({
   directory: {
@@ -51,24 +54,26 @@ const Folders = ({ dirs, root }) => {
   };
 
   return (
-    <div>
-      {dirs.map((dir) => (
-        <Paper
-          className={classes.directory}
-          key={dir._id}
-          variant="outlined"
-          elevation={2}
-          onClick={() => onClickHandler(dir)}
-        >
-          <div className={classes.directoryDetails}>
-            <Folder /> {dir.name}
-          </div>
-          <IconButton className={classes.deleteBtn}>
-            <Delete />
-          </IconButton>
-        </Paper>
-      ))}
-    </div>
+    <CSSTransition in={dirs.length > 0} timeout={500} classNames="folders">
+      <div>
+        {dirs.map((dir) => (
+          <Paper
+            className={classes.directory}
+            key={dir._id}
+            variant="outlined"
+            elevation={2}
+            onClick={() => onClickHandler(dir)}
+          >
+            <div className={classes.directoryDetails}>
+              <Folder /> {dir.name}
+            </div>
+            <IconButton className={classes.deleteBtn}>
+              <Delete />
+            </IconButton>
+          </Paper>
+        ))}
+      </div>
+    </CSSTransition>
   );
 };
 

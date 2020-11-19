@@ -6,6 +6,7 @@ import {
   Typography,
 } from "@material-ui/core";
 import { CreateNewFolder } from "@material-ui/icons";
+import { CSSTransition } from "react-transition-group";
 import Folders from "../../components/Folders/Folders";
 import useHttpClient from "../../hooks/useHttpClient";
 import Spinner from "../../components/Spinner/Spinner";
@@ -76,8 +77,7 @@ const Semesters = () => {
           <div className={classes.header}>
             <BreadcrumbLinks links={breadcrumbLinks.links} active="/" />
             <div>
-              Create Folder
-              <IconButton onClick={showModalHandler}>
+              <IconButton onClick={showModalHandler} title="Create new folder">
                 <CreateNewFolder />
               </IconButton>
             </div>

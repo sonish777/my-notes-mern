@@ -1,0 +1,11 @@
+.folders-enter {
+  opacity: 0;
+  transform-origin: top;
+  transform: translateY(-10px) scaleY(0.5);
+  transition: all 0.5s ease;
+}
+
+.folders-enter-active {
+  transform: translateY(0px) scaleY(1);
+  opacity: 1;
+}

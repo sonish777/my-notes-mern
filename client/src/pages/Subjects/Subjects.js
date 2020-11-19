@@ -77,8 +77,7 @@ const Subjects = () => {
               active={`/${semId}`}
             />
             <div>
-              Create Folder
-              <IconButton onClick={showModalHandler}>
+              <IconButton onClick={showModalHandler} title="Create new folder">
                 <CreateNewFolder />
               </IconButton>
             </div>

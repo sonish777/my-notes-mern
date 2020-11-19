@@ -13,10 +13,13 @@ import {
   Avatar,
   CardActions,
 } from "@material-ui/core";
+import { CSSTransition } from "react-transition-group";
 import { AttachFile, GetApp } from "@material-ui/icons";
 import useHttpClient from "../../hooks/useHttpClient";
 import Spinner from "../../components/Spinner/Spinner";
 import Modal from "../../components/Modal/Modal";
+
+import "./Documents.css";
 
 const useStyles = makeStyles({
   root: {
@@ -82,10 +85,13 @@ const Documents = () => {
         {},
         "blob"
       );
+      console.log("RESPONSE", res);
       const file = new Blob([res.data], { type: res.headers["content-type"] });
       const fileUrl = URL.createObjectURL(file);
       window.open(fileUrl);
-    } catch (error) {}
+    } catch (error) {
+      console.log("ERROR", error);
+    }
   };
 
   const openSelectFileHandler = () => {
@@ -122,8 +128,7 @@ const Documents = () => {
               ref={fileRef}
               onChange={selectFileHandler}
             />
-            Upload File
-            <IconButton onClick={openSelectFileHandler}>
+            <IconButton onClick={openSelectFileHandler} title="Upload file">
               <AttachFile />
             </IconButton>
           </div>
@@ -141,27 +146,33 @@ const Documents = () => {
         {isLoading && docs.length === 0 ? (
           <Spinner />
         ) : (
-          <Grid container spacing={4}>
-            {docs.map((doc) => (
-              <Grid item key={doc._id} xs={12} sm={6} md={4}>
-                <Card className={classes.cardRoot} variant="outlined">
-                  <CardHeader
-                    title={doc.name}
-                    subheader={`${doc.semester}, ${doc.subject}`}
-                    avatar={<Avatar>{doc.name.split(".")[1]}</Avatar>}
-                  />
-                  <CardActions>
-                    <IconButton
-                      title="Download"
-                      onClick={() => onClickHandler(doc._id, "download")}
-                    >
-                      <GetApp />
-                    </IconButton>
-                  </CardActions>
-                </Card>
-              </Grid>
-            ))}
-          </Grid>
+          <CSSTransition
+            in={!isLoading && docs.length > 0}
+            timeout={3000}
+            classNames="files"
+          >
+            <Grid container spacing={4}>
+              {docs.map((doc) => (
+                <Grid item key={doc._id} xs={12} sm={6} md={4}>
+                  <Card className={classes.cardRoot} variant="outlined">
+                    <CardHeader
+                      title={doc.name}
+                      subheader={`${doc.semester}, ${doc.subject}`}
+                      avatar={<Avatar>{doc.name.split(".")[1]}</Avatar>}
+                    />
+                    <CardActions>
+                      <IconButton
+                        title="Download"
+                        onClick={() => onClickHandler(doc._id, "download")}
+                      >
+                        <GetApp />
+                      </IconButton>
+                    </CardActions>
+                  </Card>
+                </Grid>
+              ))}
+            </Grid>
+          </CSSTransition>
         )}
       </div>
     </Container>

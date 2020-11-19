@@ -13,12 +13,21 @@ const useStyles = makeStyles((theme) => ({
   active: {
     color: theme.palette.primary.main,
   },
+  breadcrumbsRoot: {
+    "& > ol > li > p": {
+      textAlign: "left",
+    },
+  },
 }));
 
 const BreadcrumbLinks = ({ links, active }) => {
   const classes = useStyles();
   return (
-    <Breadcrumbs separator={<NavigateNext />}>
+    <Breadcrumbs
+      separator={<NavigateNext />}
+      maxItems={2}
+      className={classes.breadcrumbsRoot}
+    >
       <Typography variant="h6">BEIT</Typography>
       {links.map((link, i) => {
         return (
