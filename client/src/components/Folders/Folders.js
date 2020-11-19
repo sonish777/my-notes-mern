@@ -15,6 +15,7 @@ const useStyles = makeStyles((theme) => ({
     padding: "10px",
     margin: "10px 0",
     transition: "all 0.3s ease",
+    backgroundColor: "rgba(255,255,255, 0.7)",
     "&:hover": {
       cursor: "pointer",
       transform: "translateY(-2px)",
@@ -27,6 +28,8 @@ const useStyles = makeStyles((theme) => ({
   directoryDetails: {
     display: "flex",
     justifyContent: "space-around",
+    fontFamily: "Roboto",
+    letterSpacing: "1px",
     alignItems: "center",
     "& .MuiSvgIcon-root": {
       marginRight: "10px",

@@ -6,16 +6,23 @@ import { NavigateNext } from "@material-ui/icons";
 const useStyles = makeStyles((theme) => ({
   links: {
     textDecoration: "none",
-    color: "#333",
+    color: "rgba(255,255,255,0.6)",
     textTransform: "uppercase",
     letterSpacing: "1px",
-  },
-  active: {
-    color: theme.palette.primary.main,
+    fontFamily: "Roboto",
+    fontWeight: "500",
+    transition: "all 0.3s ease",
+    "&:hover": {
+      opacity: 0.8,
+      borderBottom: "1px solid",
+    },
   },
   breadcrumbsRoot: {
     "& > ol > li > p": {
       textAlign: "left",
+    },
+    "& .MuiBreadcrumbs-separator": {
+      color: "rgba(255,255,255,0.6)",
     },
   },
 }));
@@ -28,17 +35,11 @@ const BreadcrumbLinks = ({ links, active }) => {
       maxItems={2}
       className={classes.breadcrumbsRoot}
     >
-      <Typography variant="h6">BEIT</Typography>
+      {/* <Typography style={{ color: "tomato" }}>IT</Typography> */}
       {links.map((link, i) => {
         return (
           <Typography key={i}>
-            <Link
-              color="inherit"
-              to={link.route}
-              className={`${classes.links} ${
-                active === link.route && classes.active
-              }`}
-            >
+            <Link color="inherit" to={link.route} className={classes.links}>
               {link.text}
             </Link>
           </Typography>

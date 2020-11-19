@@ -78,7 +78,7 @@ const Subjects = () => {
             />
             <div>
               <IconButton onClick={showModalHandler} title="Create new folder">
-                <CreateNewFolder />
+                <CreateNewFolder color="secondary" />
               </IconButton>
             </div>
           </div>

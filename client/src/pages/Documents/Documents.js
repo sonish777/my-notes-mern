@@ -42,7 +42,13 @@ const useStyles = makeStyles({
     "&:hover": {
       transform: "translateY(-2px)",
       boxShadow: "0px 3px 10px rgba(0,0,0,0.2)",
+      backgroundColor: "rgba(255,255,255, 1)",
     },
+    "& span": {
+      fontFamily: "Roboto",
+      fontWeight: "bold",
+    },
+    backgroundColor: "rgba(255,255,255, 0.8)",
   },
   file: {
     display: "none",
@@ -129,7 +135,7 @@ const Documents = () => {
               onChange={selectFileHandler}
             />
             <IconButton onClick={openSelectFileHandler} title="Upload file">
-              <AttachFile />
+              <AttachFile color="secondary" />
             </IconButton>
           </div>
         </div>
