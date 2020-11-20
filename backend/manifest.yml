@@ -1,0 +1,9 @@
+applications:
+  - name: my-notes-backend
+    buildpack: sdk-for-nodejs
+    command: npm start
+    instances: 1
+    memory: 128M
+    random-route: true
+    env:
+      OPTIMIZE_MEMORY: true
